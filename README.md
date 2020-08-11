@@ -2,9 +2,77 @@
 Juego regen --- utilizamos el motor de juegos HCGIL
 nuestro código esta implementado bajo el patrón de arquitectura ECS (Entity Component System)
 
-Los estilos de programación utilizados son : 
-## Estilos
-### Estilo things:
+Los estilos de programación utilizados son :
+# Principios Solid
+## Principio de responsabilidad única
+```C++
+class RenderingSystem
+{
+public:
+    static void draw(sf::RenderWindow& window)
+    {
+        for(const Sprite& s : BufferManager::cSpriteBuffer)
+        {
+            window.draw(s.rs);
+        }
+    }
+
+private:
+    RenderingSystem() {};
+};
+```
+## Principio abierto/cerrado
+```C++
+class Entidad
+{
+public:
+    int id;
+    Transform* transform;
+};
+
+class Virus : public Entidad
+{
+public:
+    Collider* collider;
+    Sprite* sprite;
+    Stats* stats;
+};
+```
+## Principio de substitución de Liskov
+
+```C++
+struct Transform
+{
+    // Posicion
+    float px;
+    float py;
+
+    // Rotacion
+    float r;
+
+    // Escala
+    float sx;
+    float sy;
+};
+
+class Entidad
+{
+public:
+    int id;
+    Transform* transform;
+};
+
+class Virus : public Entidad
+{
+public:
+    Collider* collider;
+    Sprite* sprite;
+    Stats* stats;
+};
+```
+
+# Estilos de programación
+## Estilo things:
 ```C++
 class VirusCreator
 {
@@ -46,7 +114,7 @@ private:
     VirusCreator() {}
 };
 ```
-### Estilo Trinity:
+## Estilo Trinity:
 ```C++
 sf::RenderWindow window(sf::VideoMode(wx, wy), "Virus masheed");
 sf::RectangleShape fondo(sf::Vector2f(wx, wy));
@@ -70,7 +138,7 @@ while(window.isOpen())
 
 return 0;
 ```
-### Estilo Monolith:
+## Estilo Monolith:
 ```C++
  window.setEventHandler(eventHandler);
 
@@ -120,75 +188,4 @@ return 0;
         window.swapBuffers();
     }
 }
-```
-# Principios Solid
-## Principio de responsabilidad única
-```C++
-class RenderingSystem
-{
-public:
-    static void draw(sf::RenderWindow& window)
-    {
-        for(const Sprite& s : BufferManager::cSpriteBuffer)
-        {
-            window.draw(s.rs);
-        }
-    }
-
-private:
-    RenderingSystem() {};
-};
-```
-## Principio abierto/cerrado
-```C++
-class Entidad
-{
-public:
-    int id;
-    Transform* transform;
-};
-
-class Virus : public Entidad
-{
-public:
-    Collider* collider;
-    Sprite* sprite;
-    Stats* stats;
-};
-```
-
-## Principio de inversión de dependencias
-
-
-```C++
-class VirusController
-{
-public:
-    static void move(int id)
-    {
-        Virus& p = BufferManager::eVirusBuffer[id];
-        float& px = p.transform->px;
-        float& py = p.transform->py;
-        sf::RectangleShape& rs = p.sprite->rs;
-
-        float tamx = 2.0f * p.collider->rx;
-        float tamy = 2.0f * p.collider->ry;
-        float dam = p.stats->damage;        
-        float vel = p.stats->velocity;
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && px < wx - tamx)
-        {
-            px += vel;
-            rs.setPosition(sf::Vector2f {px, py});
-        }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && px > 0)
-        {
-            px -= vel;
-            rs.setPosition(sf::Vector2f {px, py});
-        }
-    }
-
-private:
-    VirusController() {};
-};
 ```
