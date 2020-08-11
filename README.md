@@ -3,7 +3,7 @@ Juego regen --- utilizamos el motor de juegos HCGIL
 nuestro código esta implementado bajo el patrón de arquitectura ECS (Entity Component System)
 
 Los estilos de programación utilizados son : 
-##Estilos
+## Estilos
 ### Estilo things:
 ```C++
 class VirusCreator
@@ -121,15 +121,9 @@ return 0;
     }
 }
 ```
-
-
 # Principios Solid
-
-### Principio de responsabilidad única
-
-```C++  
-
-
+## Principio de responsabilidad única
+```C++
 class RenderingSystem
 {
 public:
@@ -144,7 +138,22 @@ public:
 private:
     RenderingSystem() {};
 };
-
 ```
+## Principio abierto/cerrado
+```C++
+class Entidad
+{
+public:
+    int id;
+    Transform* transform;
+};
 
-
+class Virus : public Entidad
+{
+public:
+    Collider* collider;
+    Sprite* sprite;
+    Stats* stats;
+};
+```
+## Principio abierto/cerrado
