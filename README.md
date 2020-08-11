@@ -1,5 +1,5 @@
 # Regen
-Juego regen --- utilizamos el motor de juegos HCGIL
+Juego regen --- utilizamos el motor de juegos HSGIL
 nuestro código esta implementado bajo el patrón de arquitectura ECS (Entity Component System)
 
 Los estilos de programación utilizados son :
