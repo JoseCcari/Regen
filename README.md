@@ -121,3 +121,28 @@ return 0;
     }
 }
 ```
+
+
+# Principios Solid
+
+```C++  
+
+
+class RenderingSystem
+{
+public:
+    static void draw(sf::RenderWindow& window)
+    {
+        for(const Sprite& s : BufferManager::cSpriteBuffer)
+        {
+            window.draw(s.rs);
+        }
+    }
+
+private:
+    RenderingSystem() {};
+};
+
+```
+
+
