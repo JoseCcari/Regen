@@ -125,6 +125,8 @@ return 0;
 
 # Principios Solid
 
+# Principio de responsabilidad única
+
 ```C++  
 
 
