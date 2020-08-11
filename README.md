@@ -156,4 +156,39 @@ public:
     Stats* stats;
 };
 ```
-## Principio abierto/cerrado
+
+## Principio de inversión de dependencias
+
+
+```C++
+class VirusController
+{
+public:
+    static void move(int id)
+    {
+        Virus& p = BufferManager::eVirusBuffer[id];
+        float& px = p.transform->px;
+        float& py = p.transform->py;
+        sf::RectangleShape& rs = p.sprite->rs;
+
+        float tamx = 2.0f * p.collider->rx;
+        float tamy = 2.0f * p.collider->ry;
+        float dam = p.stats->damage;        
+        float vel = p.stats->velocity;
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && px < wx - tamx)
+        {
+            px += vel;
+            rs.setPosition(sf::Vector2f {px, py});
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && px > 0)
+        {
+            px -= vel;
+            rs.setPosition(sf::Vector2f {px, py});
+        }
+    }
+
+private:
+    VirusController() {};
+};
+```
