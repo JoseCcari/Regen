@@ -4,6 +4,7 @@ nuestro código esta implementado bajo el patrón de arquitectura ECS (Entity Co
 
 Los estilos de programación utilizados son : 
 Estilo things:
+```
 class PotatoCreator
 {
 public:
@@ -43,3 +44,4 @@ public:
 private:
     PotatoCreator() {}
 };
+```
