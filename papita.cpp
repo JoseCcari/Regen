@@ -94,7 +94,7 @@ std::vector<Virus> BufferManager::eVirusBuffer {};
 class VirusCreator
 {
 public:
-    //retorna el id para hallar la patata creada
+    //retorna el id para hallar el virus creado
     static int createPatata(float x, float y, float r = 0.0f, float sx = 1.0f, float sy = 1.0f, float damage = 1.0f, float velocity = 0.4f)
     {
         int cTransformNextIndex = BufferManager::cTransformBuffer.size();
