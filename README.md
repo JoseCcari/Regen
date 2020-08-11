@@ -11,6 +11,7 @@ ejemplo:
 
 
 Estilo things:
+```
 class PotatoCreator
 {
 public:
@@ -50,3 +51,4 @@ public:
 private:
     PotatoCreator() {}
 };
+```
