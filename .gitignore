@@ -1,32 +1,9 @@
-# Prerequisites
-*.d
+.vscode
+.VSCodeCounter
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+*.lib
+*.dll
+*.so.1.0
 *.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+head.exe
