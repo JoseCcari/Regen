@@ -45,3 +45,26 @@ private:
     PotatoCreator() {}
 };
 ```
+# Estilo trinity:
+```C++
+    sf::RenderWindow window(sf::VideoMode(wx, wy), "Potato masheed");
+    sf::RectangleShape fondo(sf::Vector2f(wx, wy));
+
+    int miPatata1 = PotatoCreator::createPatata(wx / 2 - tamPat / 2, wy / 2 - tamPat / 2);
+
+    while(window.isOpen())
+    {
+        window.clear();
+        PotatoController::move(miPatata1);
+        RenderingSystem::draw(window);
+
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.display();
+    }
+    
+```
