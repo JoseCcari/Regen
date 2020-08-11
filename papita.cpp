@@ -56,7 +56,7 @@ public:
     Transform* transform;
 };
 
-class Potato : public Entidad
+class Virus : public Entidad
 {
 public:
     Collider* collider;
@@ -77,7 +77,7 @@ public:
     static std::vector<Stats> cStatsBuffer;
 
     // Entities
-    static std::vector<Potato> ePotatoBuffer;
+    static std::vector<Virus> eVirusBuffer;
 
 private:
     BufferManager() {}
@@ -89,9 +89,9 @@ std::vector<Sprite> BufferManager::cSpriteBuffer {};
 std::vector<Animation> BufferManager::cAnimationBuffer {};
 std::vector<Stats> BufferManager::cStatsBuffer {};
 
-std::vector<Potato> BufferManager::ePotatoBuffer {};
+std::vector<Virus> BufferManager::eVirusBuffer {};
 
-class PotatoCreator
+class VirusCreator
 {
 public:
     //retorna el id para hallar la patata creada
@@ -117,26 +117,26 @@ public:
         int cStatsNextIndex = BufferManager::cStatsBuffer.size();
         BufferManager::cStatsBuffer.push_back(Stats {damage, velocity});
 
-        Potato p;
+        Virus p;
         p.transform = &BufferManager::cTransformBuffer[cTransformNextIndex]; // para hallar los componentes de la patata en la ultima posicion del buffer :v 
         p.collider  = &BufferManager::cColliderBuffer[cColliderNextIndex];
         p.sprite    = &BufferManager::cSpriteBuffer[cSpriteNextIndex];
         p.stats     = &BufferManager::cStatsBuffer[cStatsNextIndex];
-        BufferManager::ePotatoBuffer.push_back(p);
+        BufferManager::eVirusBuffer.push_back(p);
 
-        return BufferManager::ePotatoBuffer.size() - 1;
+        return BufferManager::eVirusBuffer.size() - 1;
     }
 
 private:
-    PotatoCreator() {}
+    VirusCreator() {}
 };
 
-class PotatoController
+class VirusController
 {
 public:
     static void move(int id)
     {
-        Potato& p = BufferManager::ePotatoBuffer[id];
+        Virus& p = BufferManager::eVirusBuffer[id];
         float& px = p.transform->px;
         float& py = p.transform->py;
         sf::RectangleShape& rs = p.sprite->rs;
@@ -159,7 +159,7 @@ public:
     }
 
 private:
-    PotatoController() {};
+    VirusController() {};
 };
 
 class RenderingSystem
@@ -179,15 +179,15 @@ private:
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(wx, wy), "Potato masheed");
+    sf::RenderWindow window(sf::VideoMode(wx, wy), "Virus masheed");
     sf::RectangleShape fondo(sf::Vector2f(wx, wy));
 
-    int miPatata1 = PotatoCreator::createPatata(wx / 2 - tamPat / 2, wy / 2 - tamPat / 2);
+    int miPatata1 = VirusCreator::createPatata(wx / 2 - tamPat / 2, wy / 2 - tamPat / 2);
 
     while(window.isOpen())
     {
         window.clear();
-        PotatoController::move(miPatata1);
+        VirusController::move(miPatata1);
         RenderingSystem::draw(window);
 
         sf::Event event;
