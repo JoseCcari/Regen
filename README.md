@@ -95,6 +95,25 @@ public:
     Sprite* sprite;
     Stats* stats;
 };
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+class EntityManagerLogger
+{
+public:
+    inline static void increaseCreatedGlobalEntitiesCounter() { ++createdGlobalEntitiesCount; }
+    inline static void increaseDestroyedGlobalEntitiesCounter() { ++destroyedGlobalEntitiesCount; }
+
+    static void outLog();
+
+private:
+    explicit EntityManagerLogger() {}
+
+    static uint32 createdGlobalEntitiesCount;
+    static uint32 destroyedGlobalEntitiesCount;
+};
+
 ```
 ## Principio de substitución de Liskov
 
