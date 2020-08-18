@@ -40,33 +40,31 @@ public:
 ```
 ## Principio de substitución de Liskov
 
-```C++
-struct Transform
-{
-    // Posicion
-    float px;
-    float py;
-
-    // Rotacion
-    float r;
-
-    // Escala
-    float sx;
-    float sy;
-};
-
-class Entidad
+```
+class EmptyEntity : public Entity
 {
 public:
-    int id;
-    Transform* transform;
+    virtual void init(uint32 _id) override;
+    virtual void destroy() override;
 };
 
-class Virus : public Entidad
+class Player : public Entity
 {
 public:
-    Collider* collider;
-    Sprite* sprite;
+    virtual void init(uint32 _id) override;
+    virtual void destroy() override;
+
+    PlayerData* playerData;
+};
+
+class Unit : public Entity
+{
+public:
+    virtual void init(uint32 _id) override;
+    virtual void destroy() override;
+
+    MeshRenderer* meshRenderer;
+    CircleCollider2D* circleCollider;
     Stats* stats;
 };
 ```
