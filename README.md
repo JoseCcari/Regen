@@ -6,6 +6,27 @@ Los estilos de programación utilizados son :
 # Principios Solid
 ## Principio de responsabilidad única
 ```C++
+
+class Entity;
+
+struct BaseComponent
+{
+    Entity* entity;
+};
+
+template <typename T>
+struct Component : public BaseComponent
+{
+    static const uint32 ID;
+    static const uint32 SIZE;
+};
+
+
+
+
+
+
+
 class RenderingSystem
 {
 public:
