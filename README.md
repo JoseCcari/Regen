@@ -81,6 +81,44 @@ private:
 ```
 ## Principio abierto/cerrado
 ```C++
+
+entity 
+
+
+class Unit : public Entity
+{
+public:
+    virtual void init(uint32 _id) override;
+    virtual void destroy() override;
+
+    MeshRenderer* meshRenderer;
+    CircleCollider2D* circleCollider;
+    Stats* stats;
+};
+
+class Building : public Entity
+{
+public:
+    virtual void init(uint32 _id) override;
+    virtual void destroy() override;
+
+    MeshRenderer* meshRenderer;
+    BoxCollider2D* boxCollider;
+    Stats* stats;
+    UnitType unitType;
+};
+
+class Destructible : public Entity
+{
+public:
+    virtual void init(uint32 _id) override;
+    virtual void destroy() override;
+
+    MeshRenderer* meshRenderer;
+    CircleCollider2D* circleCollider;
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class Entidad
 {
 public:
