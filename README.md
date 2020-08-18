@@ -155,7 +155,7 @@ private:
 ```
 ## Principio de substitución de Liskov
 
-```
+```c++
 class EmptyEntity : public Entity
 {
 public:
