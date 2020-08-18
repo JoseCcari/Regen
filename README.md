@@ -7,6 +7,23 @@ Los estilos de programación utilizados son :
 ## Principio de responsabilidad única
 ```C++
 
+class Entity
+{
+public:
+    virtual void init(uint32 _id) = 0;
+    virtual void destroy() = 0;
+
+    uint32 id;
+    uint32 type;
+    
+    Transform* transform;
+
+protected:
+    void internalInit(uint32 _id, uint32 _type);
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 class ComponentManager
 {
 public:
@@ -43,7 +60,7 @@ private:
 };
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
